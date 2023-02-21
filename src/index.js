@@ -14,7 +14,8 @@ class Task {
   updateList() {
     this.foo = 'eslint use this';
     tasksList.innerHTML = '';
-    Task.tasks.forEach((task) => {
+    const orderedTasks = Task.tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
+    orderedTasks.forEach((task) => {
       if (task.completed === true) {
         tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
@@ -46,15 +47,17 @@ new Task().updateList();
 // FOR TESTING DYNAMIC UPDATE OF THE LIST
 // ADD FIVE TASKS TO THE LIST
 // TRY CHANGING THE BOOLEAN PARAMETER! SEE THAT THE CHECK ICON UPDATES!
+// LOOK AT THE ORDER OF "id" PROPERTY. IT IS NOT ORDERED. ON "updateList()" I ORDER THE ARRAY
+// BEFORE SHOWING THE CONTENT
 
 window.addEventListener('load', () => {
-  new Task('Task number 1', false, 0).addTask();
+  new Task('Task number 4', false, 4).addTask();
 
-  new Task('Task number 2', true, 1).addTask();
+  new Task('Task number 2', true, 2).addTask();
 
-  new Task('Task number 3', false, 2).addTask();
+  new Task('Task number 0', false, 0).addTask();
 
-  new Task('Task number 4', true, 3).addTask();
+  new Task('Task number 1', true, 1).addTask();
 
-  new Task('Task number 5', true, 4).addTask();
+  new Task('Task number 3', true, 3).addTask();
 });
