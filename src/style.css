@@ -17,14 +17,8 @@ body {
 }
 
 .main-container {
-  position: absolute;
+  margin: 20px auto;
   width: 80%;
-  max-height: 80%;
-  /* margin: auto; */
-  top: 20%;
-  left: 50%;
-  /* margin-top: -20%; */
-  margin-left: -40%;
   box-shadow: 1px 1px 6px gray ;
 
   background-color: white;
