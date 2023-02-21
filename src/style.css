@@ -1,3 +1,61 @@
-h1 {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+  --light-gray: #f6f6f6;
+  --dark-gray: #E0DEE0;
+}
+
+* {
+  font-family: lato;
+  color: #474747;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-gray);
+}
+
+.main-container {
+  position: absolute;
+  width: 80%;
+  max-height: 80%;
+  /* margin: auto; */
+  top: 20%;
+  left: 50%;
+  /* margin-top: -20%; */
+  margin-left: -40%;
+  box-shadow: 1px 1px 6px gray ;
+
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.tasks-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.clear-tasks {
+  border: 1px solid transparent;
+  text-align: center;
+  background-color: var(--light-gray);
 }
