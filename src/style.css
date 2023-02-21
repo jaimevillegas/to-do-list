@@ -2,12 +2,12 @@
 
 :root {
   --light-gray: #f6f6f6;
-  --dark-gray: #E0DEE0;
+  --dark-gray: #e0dee0;
   --darker-gray: #595959;
 }
 
 * {
-  font-family: lato;
+  font-family: lato, sans-serif;
   color: #474747;
 }
 
@@ -20,8 +20,7 @@ body {
 .main-container {
   margin: 20px auto;
   width: 80%;
-  box-shadow: 1px 1px 6px gray ;
-
+  box-shadow: 1px 1px 6px gray;
   background-color: white;
 }
 
@@ -92,6 +91,7 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   width: 4%;
+
   /* border: 1px solid red; */
   text-align: center;
   cursor: pointer;

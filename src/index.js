@@ -1,10 +1,10 @@
 import './style.css';
 
 // ----- FONTAWESOME -----
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
+// import '@fortawesome/fontawesome-free/js/fontawesome'
+// import '@fortawesome/fontawesome-free/js/solid'
+// import '@fortawesome/fontawesome-free/js/regular'
+// import '@fortawesome/fontawesome-free/js/brands'
 
 const tasksList = document.getElementById('tasks-list');
 
@@ -18,9 +18,9 @@ class Task {
   static tasks = [];
 
   updateList() {
+    this.foo = 'eslint use this';
     tasksList.innerHTML = '';
     Task.tasks.forEach((task) => {
-      console.log(task.completed);
       if (task.completed === true) {
         tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
@@ -54,8 +54,6 @@ new Task().updateList();
 // TRY CHANGING THE BOOLEAN PARAMETER! SEE THAT THE CHECK ICON UPDATES!
 
 window.addEventListener('load', () => {
-  console.log("Hello there!");
-
   new Task('Task number 1', false, 0).addTask();
 
   new Task('Task number 2', true, 1).addTask();
@@ -66,5 +64,3 @@ window.addEventListener('load', () => {
 
   new Task('Task number 5', true, 4).addTask();
 });
-
-

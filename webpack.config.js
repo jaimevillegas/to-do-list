@@ -22,7 +22,7 @@ module.exports = {
     splitChunks: {
       minSize: 10000,
       maxSize: 25000,
-    }
+    },
   },
   module: {
     rules: [
