@@ -1,4 +1,4 @@
-const tasksList = document.getElementById('tasks-list');
+import * as dom from './getDomElements.js';
 
 class Task {
   constructor(description) {
@@ -12,28 +12,42 @@ class Task {
   updateList() {
     // This method updates the web page
     this.foo = 'eslint use this';
-    tasksList.innerHTML = '';
+    dom.tasksList.innerHTML = '';
     const orderedTasks = Task.tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
     localStorage.setItem('tasks', JSON.stringify(orderedTasks));
     orderedTasks.forEach((task) => {
       if (task.completed === true) {
-        tasksList.insertAdjacentHTML('beforeend', `
+        dom.tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
         <p><i class="fa-regular fa-square-check"></i></p>
-        <input value='${task.description}'>
-        <p><i class="fa-solid fa-ellipsis-vertical"></i></p>
+        <input class='input-task' input-id='${task.id}' value='${task.description}'>
+        <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
+        <p class='remove-task-from-list' data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
         </div>
         `);
       } else {
-        tasksList.insertAdjacentHTML('beforeend', `
+        dom.tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
         <p><i class="fa-regular fa-square"></i></p>
-        <input value='${task.description}'>
-        <p><i class="fa-solid fa-ellipsis-vertical"></i></p>
+        <input class='input-task' input-id='${task.id}' value='${task.description}'>
+        <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
+        <p class='remove-task-from-list' data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
         </div>
         `);
       }
     });
+
+    const addTaskToList = document.querySelectorAll('.add-task-to-list');
+    const removeTaskFromList = document.querySelectorAll('.remove-task-from-list');
+    const inputTask = document.querySelectorAll('.input-task');
+
+    addTaskToList.forEach((inputTask) => inputTask.addEventListener('click', (e) => {
+      console.log('Holi from inputTask!');
+      // console.log(e.target.dataset.id);
+      console.log(dom.inputAddTask.previousSibling);
+      this.editDescription(e.target.dataset.id, 'Buenass');
+      // TODO: HAY UN UNDEFINED CUANDO CLICK EN PUNTOS. CAMBIAR FUNCIONALIDAD PARA QUE COJA EL TEXTO DEL INPUT
+    }));
   }
 
   addTask() {
@@ -55,7 +69,7 @@ class Task {
   editDescription(id, description) {
     // This method edits a description of a specific ID
     Task.tasks.forEach((task) => {
-      if (task.id === id) {
+      if (task.id === +id) {
         task.description = description;
       }
     });

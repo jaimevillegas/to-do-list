@@ -1,5 +1,6 @@
 import './style.css';
 import Task from './task.js';
+import * as dom from './getDomElements.js';
 
 new Task().updateList();
 
@@ -30,4 +31,10 @@ window.addEventListener('load', () => {
 
   // If you refresh the page, you will see that localStorage works
   // and the array will be bigger
+});
+
+dom.buttonAddTask.addEventListener('click', () => {
+  new Task(dom.inputAddTask.value).addTask();
+  dom.inputAddTask.value = '';
+  dom.inputAddTask.focus();
 });
