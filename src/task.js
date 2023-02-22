@@ -22,16 +22,16 @@ class Task {
         <p><i class="fa-regular fa-square-check"></i></p>
         <input class='input-task' input-id='${task.id}' value='${task.description}'>
         <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
-        <p class='remove-task-from-list' data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
+        <p data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
         </div>
         `);
       } else {
         dom.tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
         <p><i class="fa-regular fa-square"></i></p>
-        <input class='input-task' input-id='${task.id}' value='${task.description}'>
+        <input class='input-task' id='${task.id}' value='${task.description}' disabled=true>
         <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
-        <p class='remove-task-from-list' data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
+        <p data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
         </div>
         `);
       }
@@ -41,12 +41,17 @@ class Task {
     const removeTaskFromList = document.querySelectorAll('.remove-task-from-list');
     const inputTask = document.querySelectorAll('.input-task');
 
-    addTaskToList.forEach((inputTask) => inputTask.addEventListener('click', (e) => {
-      console.log('Holi from inputTask!');
-      // console.log(e.target.dataset.id);
-      console.log(dom.inputAddTask.previousSibling);
-      this.editDescription(e.target.dataset.id, 'Buenass');
-      // TODO: HAY UN UNDEFINED CUANDO CLICK EN PUNTOS. CAMBIAR FUNCIONALIDAD PARA QUE COJA EL TEXTO DEL INPUT
+    addTaskToList.forEach((inputAddTask) => inputAddTask.addEventListener('click', (e) => {
+      inputTask[e.target.dataset.id].disabled = false;
+      inputTask[e.target.dataset.id].focus();
+      inputTask[e.target.dataset.id].select();
+      inputTask[e.target.dataset.id].addEventListener('focusout', (e) => {
+        this.editDescription(e.target.id, e.target.value);
+      });
+    }));
+
+    removeTaskFromList.forEach((removedTask) => removedTask.addEventListener('click', (e) => {
+      this.removeTask(e.target.dataset.id);
     }));
   }
 
