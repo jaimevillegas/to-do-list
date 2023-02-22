@@ -91,10 +91,20 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   width: 4%;
-
-  /* border: 1px solid red; */
   text-align: center;
   cursor: pointer;
+}
+
+.add-task-to-list:hover {
+  color: #1570f8;
+}
+
+.remove-task-from-list:hover {
+  color: red;
+}
+
+.plus-sign:hover {
+  color: #44a12d;
 }
 
 .task-item input {
@@ -102,4 +112,5 @@ body {
   font-size: 2rem;
   border: none;
   color: var(--darker-gray);
+  background-color: white;
 }
