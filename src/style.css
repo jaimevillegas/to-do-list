@@ -71,19 +71,26 @@ body {
 
 .task-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   border-bottom: 3px solid var(--dark-gray);
   padding: 10px;
 }
 
 .clear-tasks {
+  display: flex;
+  justify-content: center;
   border: 1px solid transparent;
+  margin: 0 auto;
   text-align: center;
   background-color: var(--light-gray);
   font-size: 1.5rem;
   color: var(--darker-gray);
+}
+
+.clear-tasks p {
   cursor: pointer;
+  text-align: center;
 }
 
 .task-item p {
@@ -93,6 +100,18 @@ body {
   width: 4%;
   text-align: center;
   cursor: pointer;
+}
+
+.clear-tasks p:hover {
+  color: #d56600;
+}
+
+.checkbox-task {
+  background-color: #fff;
+  display: block;
+  margin: 10px;
+  width: 20px;
+  height: 20px;
 }
 
 .add-task-to-list:hover {
@@ -107,7 +126,7 @@ body {
   color: #44a12d;
 }
 
-.task-item input {
+.input-task {
   width: 80%;
   font-size: 2rem;
   border: none;
