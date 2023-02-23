@@ -9,3 +9,7 @@ dom.buttonAddTask.addEventListener('click', () => {
   dom.inputAddTask.value = '';
   dom.inputAddTask.focus();
 });
+
+dom.clearAllCompleted.addEventListener('click', () => {
+  new Task().clearComplete();
+});

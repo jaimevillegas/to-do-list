@@ -3,7 +3,7 @@ import * as dom from './getDomElements.js';
 class Task {
   constructor(description) {
     this.description = description;
-    this.completed = false;
+    this.completed = null;
     this.id = 0;
   }
 
@@ -13,14 +13,15 @@ class Task {
     // This method updates the web page
     this.foo = 'eslint use this';
     dom.tasksList.innerHTML = '';
-    const orderedTasks = Task.tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
-    localStorage.setItem('tasks', JSON.stringify(orderedTasks));
-    orderedTasks.forEach((task) => {
+    // const orderedTasks = Task.tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
+    Task.tasks = Task.tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
+    localStorage.setItem('tasks', JSON.stringify(Task.tasks));
+    Task.tasks.forEach((task) => {
       if (task.completed === true) {
         dom.tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
-        <p><i class="fa-regular fa-square-check"></i></p>
-        <input class='input-task' input-id='${task.id}' value='${task.description}'>
+        <input type='checkbox' class='checkbox-task' id='${task.id}' checked='true' >
+        <input class='input-task' input-id='${task.id}' value='${task.description}' style='text-decoration: line-through'>
         <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
         <p data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
         </div>
@@ -28,7 +29,7 @@ class Task {
       } else {
         dom.tasksList.insertAdjacentHTML('beforeend', `
         <div class='task-item'>
-        <p><i class="fa-regular fa-square"></i></p>
+        <input type='checkbox' class='checkbox-task' id='${task.id}'>
         <input class='input-task' id='${task.id}' value='${task.description}' disabled=true>
         <p class="add-task-to-list" data-id='${task.id}'><i class="fa-solid fa-ellipsis-vertical add-task-to-list" data-id='${task.id}'></i></p>
         <p data-id='${task.id}'><i class="fa-regular fa-trash-can remove-task-from-list" data-id='${task.id}'></i></p>
@@ -40,6 +41,11 @@ class Task {
     const addTaskToList = document.querySelectorAll('.add-task-to-list');
     const removeTaskFromList = document.querySelectorAll('.remove-task-from-list');
     const inputTask = document.querySelectorAll('.input-task');
+    const checkboxTask = document.querySelectorAll('.checkbox-task');
+
+    checkboxTask.forEach((checkbox) => checkbox.addEventListener('change', () => {
+      this.setStatus(checkbox.id, checkbox.checked);
+    }));
 
     addTaskToList.forEach((inputAddTask) => inputAddTask.addEventListener('click', (e) => {
       inputTask[e.target.dataset.id].disabled = false;
@@ -84,10 +90,19 @@ class Task {
   setStatus(id, completed) {
     // This method set the check status of a task
     Task.tasks.forEach((task) => {
-      if (task.id === id) {
+      if (task.id === +id) {
         task.completed = completed;
       }
     });
+    this.updateList();
+  }
+
+  clearComplete() {
+    // This method clear all tasks with completed=true, and reassign the IDs
+    Task.tasks = Task.tasks.filter((task) => task.completed !== true);
+    for (let i = 0; i < Task.tasks.length; i += 1) {
+      Task.tasks[i].id = i;
+    }
     this.updateList();
   }
 }
