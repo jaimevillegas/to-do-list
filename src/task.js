@@ -71,9 +71,9 @@ class Task {
   removeTask(id) {
     // This method removes a task with specific ID and reassigns de IDs of the array
     Task.tasks = Task.tasks.filter((task) => task.id !== +id);
-    for (let i = 0; i < Task.tasks.length; i += 1) {
-      Task.tasks[i].id = i;
-    }
+    Task.tasks.foreach((task) => {
+      Task.tasks[task].id = task;
+    });
     this.updateList();
   }
 
@@ -100,9 +100,9 @@ class Task {
   clearComplete() {
     // This method clear all tasks with completed=true, and reassign the IDs
     Task.tasks = Task.tasks.filter((task) => task.completed !== true);
-    for (let i = 0; i < Task.tasks.length; i += 1) {
-      Task.tasks[i].id = i;
-    }
+    Task.tasks.foreach((task) => {
+      Task.tasks[task].id = task;
+    })
     this.updateList();
   }
 }
