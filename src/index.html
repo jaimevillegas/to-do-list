@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>To-do List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <section class="main-container">
+    <div class="header">
+      <h1>Today's To Do</h1>
+      <p><i class="fa-solid fa-rotate"></i></p>
+    </div>
+    <section class="tasks-input">
+      <input id='input-add-task' type="text" name="enter-task" placeholder='Add to your list...' value="">
+      <p><i id='button-add-task' class="plus-sign fa-solid fa-plus"></i></p>
+    </section>
+    <section id='tasks-list' class="tasks-list">
+      <!-- THIS SECTION IS FILLED DYNAMICALLY WITH JS -->
+    </section>
+    <section class="clear-tasks">
+      <p id='clear-all-completed'>Clear all completed</p>
+    </section>
+
+  </section>
+  <script src="https://kit.fontawesome.com/cbbd43a9dc.js" crossorigin="anonymous"></script>
+  <script src='index.js'></script>
+</body>
+
+</html>

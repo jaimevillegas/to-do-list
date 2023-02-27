@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+  --light-gray: #f6f6f6;
+  --dark-gray: #e0dee0;
+  --darker-gray: #595959;
+}
+
+* {
+  font-family: lato, sans-serif;
+  color: #474747;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-gray);
+}
+
+.main-container {
+  margin: 20px auto;
+  width: 80%;
+  box-shadow: 1px 1px 6px gray;
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.header h1 {
+  padding-left: 15px;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.header p {
+  margin-right: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.tasks-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.tasks-input input {
+  border: none;
+  font-size: 2rem;
+  font-style: italic;
+  margin-left: 15px;
+  padding-left: 5px;
+  font-weight: 300;
+  width: 80%;
+}
+
+.tasks-input p {
+  padding-right: 15px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.task-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 3px solid var(--dark-gray);
+  padding: 10px;
+}
+
+.clear-tasks {
+  display: flex;
+  justify-content: center;
+  border: 1px solid transparent;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--light-gray);
+  font-size: 1.5rem;
+  color: var(--darker-gray);
+}
+
+.clear-tasks p {
+  cursor: pointer;
+  text-align: center;
+}
+
+.task-item p {
+  font-size: 1.5rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 4%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.clear-tasks p:hover {
+  color: #d56600;
+}
+
+.checkbox-task {
+  background-color: #fff;
+  display: block;
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.add-task-to-list:hover {
+  color: #1570f8;
+}
+
+.remove-task-from-list:hover {
+  color: red;
+}
+
+.plus-sign:hover {
+  color: #44a12d;
+}
+
+.input-task {
+  width: 80%;
+  font-size: 2rem;
+  border: none;
+  color: var(--darker-gray);
+  background-color: white;
+}
