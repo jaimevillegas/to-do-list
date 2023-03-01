@@ -1,4 +1,4 @@
-import * as dom from './getDomElements.js';
+// import * as dom from './getDomElements.js';
 
 class Task {
   constructor(description) {
@@ -7,7 +7,7 @@ class Task {
     this.id = 0;
   }
 
-  static tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+  export const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 
   updateList() {
     // This method updates the web page
@@ -108,3 +108,5 @@ class Task {
 }
 
 export default Task;
+
+module.exports = Task;
