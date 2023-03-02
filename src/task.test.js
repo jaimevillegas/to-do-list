@@ -5,6 +5,7 @@ import {
 } from './tasks_forTesting.js';
 import 'jest-localstorage-mock';
 
+
 const tasks = { array: [] };
 // This function will update the list of tasks on the DOM
 const updateList = () => {
@@ -13,10 +14,12 @@ const updateList = () => {
   for (let i = 0; i < tasks.array.length; i += 1) {
     const task = tasks.array.find((task) => task.index === i);
 
+
     // Creating a text input
     const input = document.createElement('input');
     input.type = 'text';
     input.value = task.description;
+
 
     // create a completed task
     const span = document.createElement('span');
@@ -70,6 +73,7 @@ describe('Tests for Part 2', () => {
     update(tasks, 0, 'Task 1 Edited');
     expect(tasks.array[0].description).toBe('Task 1 Edited');
   });
+
   test('Test: Update status of a Task', () => {
     expect(tasks.array[0].completed).toBe(false);
     processCompleted(tasks, 0, true);
@@ -78,11 +82,13 @@ describe('Tests for Part 2', () => {
   test('Test: Clear all Completed Tasks', () => {
     addTask(tasks, updateList, 'Task number 1');
     addTask(tasks, updateList, 'Task number 2');
-    addTask(tasks, updateList, 'Task number 1');
+    addTask(tasks, updateList, 'Task number 3');
     processCompleted(tasks, 1, true);
     processCompleted(tasks, 2, true);
     clearAllCompleted(tasks, updateList);
     const li = document.querySelectorAll('#list li');
     expect(li).toHaveLength(1);
   });
+
 });
+
