@@ -30,3 +30,24 @@ export const removeTask = (tasks, taskIndex, updateList) => {
   Save(tasks.array);
   updateList();
 };
+
+// TESTING: PART 2 --> Adding functions to process completed tasks and clear all completed tasks
+
+export const processCompleted = (tasks, index, checkValue) => {
+  tasks.array[index].completed = checkValue;
+  Save(tasks.array);
+};
+
+export const clearAllCompleted = (tasks, updateList) => {
+  const taskProcessed = [];
+  let index = 0;
+  for (let i = 0; i < tasks.array.length; i += 1) {
+    if (tasks.array[i].completed === false) {
+      taskProcessed.push({ ...tasks.array[i], index });
+      index += 1;
+    }
+  }
+  tasks.array = taskProcessed;
+  Save(tasks.array);
+  updateList();
+};
