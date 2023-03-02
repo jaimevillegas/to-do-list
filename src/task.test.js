@@ -1,6 +1,8 @@
 // Import modules to manipulate DOM, access LocalStorage and access functions
 import { JSDOM } from 'jsdom';
-import { addTask, removeTask } from './tasks_forTesting.js';
+import {
+  addTask, removeTask, update, processCompleted, clearAllCompleted,
+} from './tasks_forTesting.js';
 import 'jest-localstorage-mock';
 
 const tasks = { array: [] };
@@ -58,5 +60,30 @@ describe('Tests for Part 1', () => {
     removeTask(tasks, 0, updateList);
     const li = document.querySelectorAll('#list li');
     expect(li).toHaveLength(0);
+  });
+});
+
+describe('Tests for Part 2', () => {
+  test('Test: Edit task description', () => {
+    addTask(tasks, updateList, 'Task 1');
+    expect(tasks.array[0].description).toBe('Task 1');
+    update(tasks, 0, 'Task 1 Edited');
+    expect(tasks.array[0].description).toBe('Task 1 Edited');
+  });
+
+  test('Test: Update status of a Task', () => {
+    expect(tasks.array[0].completed).toBe(false);
+    processCompleted(tasks, 0, true);
+    expect(tasks.array[0].completed).toBe(true);
+  });
+  test('Test: Clear all Completed Tasks', () => {
+    addTask(tasks, updateList, 'Task number 1');
+    addTask(tasks, updateList, 'Task number 2');
+    addTask(tasks, updateList, 'Task number 3');
+    processCompleted(tasks, 1, true);
+    processCompleted(tasks, 2, true);
+    clearAllCompleted(tasks, updateList);
+    const li = document.querySelectorAll('#list li');
+    expect(li).toHaveLength(1);
   });
 });
