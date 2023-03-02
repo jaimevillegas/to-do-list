@@ -3,7 +3,6 @@ import { JSDOM } from 'jsdom';
 import { addTask, removeTask } from './tasks_forTesting.js';
 import 'jest-localstorage-mock';
 
-
 const tasks = { array: [] };
 // This function will update the list of tasks on the DOM
 const updateList = () => {
@@ -23,7 +22,6 @@ const updateList = () => {
       span.className = 'completed';
       input.className = 'completedInput';
     }
-
 
     // Create a checkbox
     const checkbox = document.createElement('input');
@@ -47,7 +45,6 @@ const updateList = () => {
 
 // ---- Running Tests
 
-
 describe('Tests for Part 1', () => {
   test('Test: Adding a task to the list', () => {
     const dom = new JSDOM('<ul class="list" id="list"></ul>');
@@ -57,11 +54,9 @@ describe('Tests for Part 1', () => {
     expect(li).toHaveLength(1);
   });
 
-
   test('Test: Removing a task from the list', () => {
     removeTask(tasks, 0, updateList);
     const li = document.querySelectorAll('#list li');
     expect(li).toHaveLength(0);
   });
 });
-
